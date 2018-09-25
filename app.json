@@ -16,7 +16,12 @@
     "volumes": [
       {
         "host": "/var/lib/dokku/data/storage/gitea",
-        "app": "/home/git/gitea",
+        "app": "/data/gitea",
+        "phases": "deploy,run"
+      },
+      {
+        "host": "/var/lib/dokku/data/storage/gitea/git",
+        "app": "/data/git/repositories",
         "phases": "deploy,run"
       }
     ]
