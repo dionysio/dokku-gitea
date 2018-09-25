@@ -1,0 +1,24 @@
+{
+  "name": "gitea",
+  "description": "Git with a cup of tea, painless self-hosted git service",
+  "repository": "https://github.com/dionysio/dokku-gitea",
+  "success_url": "/",
+  "dokku": {
+    "plugins": [
+      {
+        "name": "proxy",
+        "commands":["proxy:ports-set $APP http:80:3000 tcp:222:22"]
+      },{
+        "name":"psql-single-container",
+        "commands":["psql:create $APP","psql:link $APP $APP"]
+      }
+    ],
+    "volumes": [
+      {
+        "host": "/var/lib/dokku/data/storage/gitea",
+        "app": "/home/git/gitea",
+        "phases": "deploy,run"
+      }
+    ]
+  }
+}
